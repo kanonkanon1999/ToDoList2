@@ -1,15 +1,10 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import ToDoListItem from './Components/ToDoListItem';
-import Header from './Components/Header';
 
-
-
-export default function App() {
+export default function ToDoListItem() {
   return (
     <View style={styles.container}>
-      <Header/>
-      <ToDoListItem/>
+      <Text>Hello World!</Text>
     </View>
   );
 }
@@ -18,5 +13,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 });
