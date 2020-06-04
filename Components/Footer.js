@@ -10,7 +10,8 @@ export default function Footer() {
         todoValue: '',
     };
 
-    onchange = text => {
+    onChange = text => {
+        console.log('Hello!');
         this.setState({todoValue: text});
     };
     onPress = () => {

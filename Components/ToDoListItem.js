@@ -5,13 +5,12 @@ import Footer from './Footer';
 
 const {width} = Dimensions.get('window');
 
-export default class ToDoListItem extends React.Component  {
-    constructor(props){
-        super(props);
-        this.state = {
-            todoList: [],
-        };
-    }
+export default function ToDoListItem()  {
+
+    state = {
+        todoList: [],
+    };
+
     addTodo = text => {
         const list =[].concat(...this.state.todoList);
         list.push({
@@ -30,7 +29,6 @@ export default class ToDoListItem extends React.Component  {
             todoList: todos,
         });
     }
- render(){
   return (
     <View style={styles.ToDoListItemContainer}>
         <FlatList
@@ -59,7 +57,6 @@ export default class ToDoListItem extends React.Component  {
                             ]}
                             onPress={() => this.handleCheck}>
                                 {item.name}
-                                {' '}
                         </Text>
                     </View>
                 );
@@ -68,7 +65,7 @@ export default class ToDoListItem extends React.Component  {
         <Footer onPress={this.addTodo}/>
     </View>
   );
-}}
+}
 const styles = StyleSheet.create({
     text: {
         marginLeft:10,
@@ -81,6 +78,7 @@ const styles = StyleSheet.create({
        borderBottomColor:'#fff',
        borderBottomWidth:2,
        width:width,
+       backgroundColor: '#c9efeb',
    },
    CheckBox: {
        marginLeft:20,
