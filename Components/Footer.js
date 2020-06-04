@@ -4,21 +4,20 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 
 const {width} = Dimensions.get('window');
 
-export default function Footer() {
+export default class Footer extends React.Component {
     
     state = {
         todoValue: '',
     };
 
     onChange = text => {
-        console.log('Hello!');
         this.setState({todoValue: text});
     };
     onPress = () => {
         this.props.onPress(this.state.todoValue);
         this.textInput.clear();
     };
-
+ render(){
   return (
     <View style={styles.footercontainer}>
         <TextInput
@@ -38,7 +37,7 @@ export default function Footer() {
         />
     </View>
   );
-}
+}}
 
 const styles = StyleSheet.create({
     TextInput:{

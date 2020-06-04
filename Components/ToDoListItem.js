@@ -5,7 +5,7 @@ import Footer from './Footer';
 
 const {width} = Dimensions.get('window');
 
-export default function ToDoListItem()  {
+export default class ToDoListItem extends React.Component  {
 
     state = {
         todoList: [],
@@ -29,6 +29,7 @@ export default function ToDoListItem()  {
             todoList: todos,
         });
     }
+ render(){
   return (
     <View style={styles.ToDoListItemContainer}>
         <FlatList
@@ -65,7 +66,7 @@ export default function ToDoListItem()  {
         <Footer onPress={this.addTodo}/>
     </View>
   );
-}
+}}
 const styles = StyleSheet.create({
     text: {
         marginLeft:10,
