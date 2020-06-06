@@ -20,18 +20,12 @@ export default class Footer extends React.Component {
             this.setState({todoValue:''});
         }
     };
-    handleKeyPress = e => {
-        if (e.key === "Enter") {
-            this.props.onPress(this.state.todoValue);
-            this.textInput.clear();
-            this.setState({todoValue:''});
-        }
-    };
  render(){
   return (
     <View style={styles.footercontainer}>
         <TextInput
-            onKeyPress={(e) => this.handleKeyPress(e)}
+            returnKeyType='done'
+            onSubmitEditing={this.onPress}
             onChangeText={this.onChange}
             autoCapitalize='none'
             placeholder={'新規入力'}

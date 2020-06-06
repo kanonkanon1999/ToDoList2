@@ -14,7 +14,7 @@ export default class ToDoListItem extends React.Component  {
     addTodo = text => {
         const list =[].concat(...this.state.todoList);
         list.push({
-            key: Date.now(),
+            key: `${Date.now()}`,
             name: text,
             isDone: false,
         });
@@ -33,7 +33,6 @@ export default class ToDoListItem extends React.Component  {
         return (
         <View style={styles.ToDoListItemContainer}>
         <FlatList
-            keyExtractor={(item, index) => {item.key,index.toString()}}
             data={this.state.todoList}
             renderItem={({item,index}) => {
                 return(
@@ -62,7 +61,7 @@ export default class ToDoListItem extends React.Component  {
                                     color: item.isDone ? 'gray' : '#323333',
                                 },
                             ]}
-                            onPress={() => this.handleCheck(index)}>
+                            onKeyPress={() => this.handleCheck(index)}>
                                 {item.name}
                         </Text>
                     </View>
