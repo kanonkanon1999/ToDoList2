@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
         fontSize:20,
         paddingLeft:25,
     },
-    footerContainer:{
+    footercontainer:{
         height:60,
         backgroundColor:'#fff',
     },

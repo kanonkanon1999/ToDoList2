@@ -1,6 +1,8 @@
 import React from 'react';
 import { StyleSheet, Text, View, Dimensions, FlatList } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import Swipeout from 'react-native-swipeout';
+
 import Footer from './Footer';
 
 const {width} = Dimensions.get('window');
@@ -9,6 +11,27 @@ export default class ToDoListItem extends React.Component  {
 
     state = {
         todoList: [],
+        activeRowKey: null,
+    };
+
+    swipeoutsettings = {
+        autoclose: true,
+        onClose: (secId,rowId,direction) => {
+
+        },
+        onOpen: (secId,rowId,direction) =>{
+            this.setState({activeRowKey:this.state.key});
+        },
+        right:[
+            {
+            onPress: ()=> {
+                this.state.todoList.splice(this.state.todoList,1);
+            },
+            text:'削除',type: 'delete'
+            },
+        ],
+        rowId: this.state.index,
+        secId: 1,
     };
 
     addTodo = text => {
@@ -28,10 +51,11 @@ export default class ToDoListItem extends React.Component  {
         this.setState({
             todoList: todos,
         });
-    }
+    };
     render(){
         return (
         <View style={styles.ToDoListItemContainer}>
+        <Swipeout {...this.swipeoutsettings}>
         <FlatList
             data={this.state.todoList}
             renderItem={({item,index}) => {
@@ -61,13 +85,14 @@ export default class ToDoListItem extends React.Component  {
                                     color: item.isDone ? 'gray' : '#323333',
                                 },
                             ]}
-                            onKeyPress={() => this.handleCheck(index)}>
+                            onPress={() => this.handleCheck(index)}>
                                 {item.name}
                         </Text>
                     </View>
                 );
             }}
         />
+        </Swipeout>
         <Footer onPress={this.addTodo}/>
         </View>
         );
