@@ -14,7 +14,7 @@ export default class ToDoListItem extends React.Component  {
     addTodo = text => {
         const list =[].concat(...this.state.todoList);
         list.push({
-            key: Data.now(),
+            key: Date.now(),
             name: text,
             isDone: false,
         });
@@ -29,24 +29,30 @@ export default class ToDoListItem extends React.Component  {
             todoList: todos,
         });
     }
- render(){
-  return (
-    <View style={styles.ToDoListItemContainer}>
+    render(){
+        return (
+        <View style={styles.ToDoListItemContainer}>
         <FlatList
+            keyExtractor={(item, index) => {item.key,index.toString()}}
             data={this.state.todoList}
             renderItem={({item,index}) => {
                 return(
                    <View style={styles.ToDoListItem}>
                         <Icon
-                          name={
-                            item.isDone ? 'checkbox-marked' : 'checkbox-blank-outline'   
-                          }
-                          isDone={item.isDone}
-                          style={styles.Checkbox}
-                          size={35}
-                          onPress={() => {
-                              this.handleCheck(index);
-                          }}
+                            name={
+                                item.isDone ?　'checkbox-marked' : 'checkbox-blank-outline'
+                            }
+                            style={[
+                                styles.CheckBox,
+                                {
+                                    color: item.isDone ? 'gray' : '#323333',
+                                },
+                            ]}
+                            isDone={item.isDone}
+                            size={35}
+                            onPress={() => {
+                                this.handleCheck(index);
+                            }}
                         />
                         <Text
                             style={[
@@ -56,7 +62,7 @@ export default class ToDoListItem extends React.Component  {
                                     color: item.isDone ? 'gray' : '#323333',
                                 },
                             ]}
-                            onPress={() => this.handleCheck}>
+                            onPress={() => this.handleCheck(index)}>
                                 {item.name}
                         </Text>
                     </View>
@@ -64,13 +70,13 @@ export default class ToDoListItem extends React.Component  {
             }}
         />
         <Footer onPress={this.addTodo}/>
-    </View>
-  );
-}}
+        </View>
+        );
+    }}
 const styles = StyleSheet.create({
     text: {
         marginLeft:10,
-        marginTop:15,
+        marginTop:17,
         fontWeight: '400',
         fontSize:20,
     },
