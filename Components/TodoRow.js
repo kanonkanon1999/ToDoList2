@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View, Dimensions } from 'react-native';
-import { Icon } from 'react-native-vector-icons/MaterialCommunityIcons';
+import Icon from 'react-native-vector-icons/MaterialIcons';
+export default Icon;
 const {width} = Dimensions.get('window');
 
 
@@ -14,7 +15,7 @@ function TodoRow(props) {
   return (
     <View style={styles.ToDoListItem}>
       <Icon
-          name={isDone ? 'checkbox-marked' : 'checkbox-blank0outline'}
+          name={isDone ? 'check-box' : 'check-box-outline-blank'}
           style={[styles.CheckBox,{color: isDone ? 'gray' : '#323333'}]}
           isDone={isDone}
           size={35}
@@ -59,4 +60,4 @@ const styles = StyleSheet.create({
    
 });
 
-export default TodoRow;
+
