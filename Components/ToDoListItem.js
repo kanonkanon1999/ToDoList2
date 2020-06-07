@@ -1,8 +1,8 @@
 import React from 'react';
-import { StyleSheet, Text, View, Dimensions, FlatList, TouchableOpacity } from 'react-native';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import { StyleSheet, Text, View, Dimensions, TouchableOpacity } from 'react-native';
 import { SwipeListView } from 'react-native-swipe-list-view';
 
+import TodoRow from './TodoRow';
 import Footer from './Footer';
 
 const {width} = Dimensions.get('window');
@@ -38,44 +38,12 @@ export default class ToDoListItem extends React.Component  {
     
     render(){
         return (
-        <View style={styles.ToDoListItemContainer}>
+        <View>
             <SwipeListView 
                 useFlatList={true}
                 data={this.state.todoList}
-                renderItem={(rowData, rowMap,item,index) => {
-                    return(
-                       <View style={styles.ToDoListItem}>
-                            <Icon
-                                name={
-                                    rowData.isDone ?　'checkbox-marked' : 'checkbox-blank-outline'
-                                }
-                                style={[
-                                    styles.CheckBox,
-                                    {
-                                        color: rowData.isDone ? 'gray' : '#323333',
-                                    },
-                                ]}
-                                isDone={rowData.isDone}
-                                size={35}
-                                onPress={() => {
-                                    this.handleCheck(index);
-                                }}
-                            />
-                            <Text
-                                style={[
-                                    styles.text,
-                                    {
-                                        textDecorationLine: rowData.isDone ? 'line-through' : 'none',
-                                        color: rowData.isDone ? 'gray' : '#323333',
-                                    },
-                                ]}
-                                onPress={() => this.handleCheck(index)}>
-                                    {rowData.item.name}
-                            </Text>
-                        </View>
-                    );
-                }}
-                renderHiddenItem={ (rowData, rowMap) => (
+                renderItem={({item,index}) => <TodoRow {...item} onPress={() => {this.handleCheck(index)}}/>}
+                renderHiddenItem={(rowData,rowMap) => (
                     <View style={styles.rowBack}>
                         <TouchableOpacity onPress={ () => rowMap[rowData.item.key].closeRow() }>
                             <Text style={styles.rowBackText}>削除</Text>
@@ -104,32 +72,10 @@ const styles = StyleSheet.create({
     },
     rowBack:{
         justifyContent: 'space-between',
-        backgroundColor:'red',
+        backgroundColor:'#ff6347',
         height:60,
         borderBottomColor:'#fff',
         borderBottomWidth:2,
         width:width,
     },
-    text: {
-        marginLeft:10,
-        marginTop:17,
-        fontWeight: '400',
-        fontSize:20,
-    },
-   ToDoListItem: {
-       height:60,
-       flexDirection: 'row',
-       borderBottomColor:'#fff',
-       borderBottomWidth:2,
-       width:width,
-       backgroundColor: '#c9efeb',
-   },
-   CheckBox: {
-       marginLeft:20,
-       marginRight:10,
-       marginTop:10,
-       marginBottom:10,
-       color:'#323333',
-   },
-  
 });
