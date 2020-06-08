@@ -21,7 +21,7 @@ export default function TodoHeader() {
         centerComponent={{ text: 'To Do List', style: { color: '#fff', fontSize:20, },  }}
         rightComponent={<Icon name= 'trash-o' size={20}  style={styles.rightIcon}/>}
         containerStyle={{
-        backgroundColor: '#1faf9e',
+        backgroundColor: '#ca3c6e',
         }}
         />
     </View>

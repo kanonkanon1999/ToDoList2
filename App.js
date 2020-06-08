@@ -8,10 +8,8 @@ import Header from './Components/Header';
 export default function App() {
   return (
     <View style={styles.container}>
-      <Header/>
-      <KeyboardAvoidingView>
-      <ToDoListItem/>
-      </KeyboardAvoidingView>
+        <Header/>
+        <ToDoListItem/>
     </View>
   );
 }
@@ -19,6 +17,6 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#c9efeb',
+    backgroundColor: '#f4d2de',
   },
 });

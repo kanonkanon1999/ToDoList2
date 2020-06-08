@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, Dimensions, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, Dimensions, TouchableOpacity, } from 'react-native';
 import { SwipeListView } from 'react-native-swipe-list-view';
 
 import TodoRow from './TodoRow';
@@ -34,37 +34,49 @@ export default class ToDoListItem extends React.Component  {
     onRowOpen(rowKey, rowMap, toValue) {
         const rowRef = rowMap[rowKey];
         rowRef.closeRow();
-    }
+    };
+    delete = (index) => () => {
+        const todoList = [].concat(this.state.todoList);
+        todoList.splice(index,1);
+    
+        this.setState({
+          todoList,
+        });
+      }
     
     render(){
         return (
-        <View>
+        <View style={styles.position}>
             <SwipeListView 
                 useFlatList={true}
                 data={this.state.todoList}
                 renderItem={({item,index}) => <TodoRow {...item} onPress={() => {this.handleCheck(index)}}/>}
                 renderHiddenItem={(rowData,rowMap) => (
                     <View style={styles.rowBack}>
-                        <TouchableOpacity onPress={ () => rowMap[rowData.item.key].closeRow() }>
+                        <TouchableOpacity onPress={ () => rowMap[rowData.item.key].closeRow(),this.delete()}>
                             <Text style={styles.rowBackText}>削除</Text>
                         </TouchableOpacity>
                     </View>
                 )}
-                leftOpenValue={60}
-                rightOpenValue={-150}
+                leftActivationValue={200} 
+                leftOpenValue={0}
+                rightOpenValue={-100}
                 onRowOpen={(rowKey, rowMap) => {
                     setTimeout(() => {
                 rowMap[rowKey].closeRow()
-                }, 2000)
+                }, 5000)
     }}
             />
-        <Footer onPress={this.addTodo}/>
+            <Footer onPress={this.addTodo}/>
         </View>
         );
     }}
 const styles = StyleSheet.create({
+    position:{
+        justifyContent:'space-between',
+    },
     rowBackText:{
-        marginRight:10,
+        marginRight:20,
         marginTop:20,
         textAlign:'right',
         color:'#fff',

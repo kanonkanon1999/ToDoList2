@@ -1,12 +1,10 @@
 import React from 'react';
 import { StyleSheet, Text, View, Dimensions } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
-export default Icon;
 const {width} = Dimensions.get('window');
 
 
-
-function TodoRow(props) {
+export default function TodoRow(props) {
     const {
         isDone,
         name,
@@ -48,7 +46,7 @@ const styles = StyleSheet.create({
         borderBottomColor:'#fff',
         borderBottomWidth:2,
         width:width,
-        backgroundColor: '#c9efeb',
+        backgroundColor: '#f4d2de',
     },
     CheckBox: {
         marginLeft:20,
