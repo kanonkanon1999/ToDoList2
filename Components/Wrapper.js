@@ -2,11 +2,11 @@ import React from 'react';
 import { StyleSheet, TouchableWithoutFeedback, Keyboard, View} from 'react-native';
 
 
-export default function Wrapper({childern}) {
+export default function Wrapper({children}) {
   return (
       <TouchableWithoutFeedback onPress={() =>
         Keyboard.dismiss()}>
-        {childern}
+        {children}
       </TouchableWithoutFeedback>
   );
 }
