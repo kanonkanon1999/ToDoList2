@@ -24,7 +24,10 @@ export default class TodoHeader extends React.Component {
   handleDisplayAlert = () =>{
     this.setState({isVisible:true});
   }
-  
+  onRowOpen(rowKey, rowMap, toValue) {
+    const rowRef = rowMap[rowKey];
+    rowRef.closeRow();
+};
   render(){
     return (
       <View style={styles.haderContainer}>

@@ -20,6 +20,10 @@ export default class Footer extends React.Component {
             this.setState({todoValue:''});
         }
     };
+    onRowOpen(rowKey, rowMap, toValue) {
+        const rowRef = rowMap[rowKey];
+        rowRef.closeRow();
+    };
  render(){
   return (
     <View style={styles.footercontainer}>
