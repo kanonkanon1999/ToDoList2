@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, Dimensions, TouchableOpacity, } from 'react-native';
+import { StyleSheet, Text, View, Dimensions, TouchableOpacity, KeyboardAvoidingView, } from 'react-native';
 import { SwipeListView } from 'react-native-swipe-list-view';
 
 import TodoRow from './TodoRow';
@@ -42,7 +42,8 @@ export default class ToDoListItem extends React.Component  {
         this.setState({
           todoList,
         });
-      }
+    };
+    
     
     render(){
         return (
@@ -51,9 +52,9 @@ export default class ToDoListItem extends React.Component  {
                 useFlatList={true}
                 data={this.state.todoList}
                 renderItem={({item,index}) => <TodoRow {...item} onPress={() => {this.handleCheck(index)}}/>}
-                renderHiddenItem={(rowData,rowMap) => (
+                renderHiddenItem={({index}) => (
                     <View style={styles.rowBack}>
-                        <TouchableOpacity onPress={ () => rowMap[rowData.item.key].closeRow(),this.delete()}>
+                        <TouchableOpacity onPress={this.delete(index)}>
                             <Text style={styles.rowBackText}>削除</Text>
                         </TouchableOpacity>
                     </View>
@@ -63,7 +64,7 @@ export default class ToDoListItem extends React.Component  {
                 rightOpenValue={-100}
                 onRowOpen={(rowKey, rowMap) => {
                     setTimeout(() => {
-                rowMap[rowKey].closeRow()
+                rowMap[rowKey]&&rowMap[rowKey].closeRow()
                 }, 5000)
     }}
             />
@@ -72,9 +73,6 @@ export default class ToDoListItem extends React.Component  {
         );
     }}
 const styles = StyleSheet.create({
-    position:{
-        justifyContent:'space-between',
-    },
     rowBackText:{
         marginRight:20,
         marginTop:20,
