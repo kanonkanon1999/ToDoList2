@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, TouchableWithoutFeedback, Keyboard} from 'react-native';
+import { StyleSheet, TouchableWithoutFeedback, Keyboard, View} from 'react-native';
 
 
 export default function Wrapper({childern}) {
