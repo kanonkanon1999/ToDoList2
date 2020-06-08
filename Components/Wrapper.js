@@ -1,13 +1,12 @@
 import React from 'react';
-import { StyleSheet, TouchableWithoutFeedback, Keyboard, View} from 'react-native';
+import { StyleSheet, TouchableWithoutFeedback, Keyboard, View, TouchableOpacity} from 'react-native';
 
 
 export default function Wrapper({children}) {
   return (
-      <TouchableWithoutFeedback onPress={() =>
-        Keyboard.dismiss()}>
+      <TouchableOpacity onPress={Keyboard.dismiss}　activeOpacity={1}>
         {children}
-      </TouchableWithoutFeedback>
+      </TouchableOpacity>
   );
 }
 
