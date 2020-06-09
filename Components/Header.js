@@ -3,7 +3,6 @@ import {
      StyleSheet, 
      Text, 
      View,
-     Dimensions, 
     } from 'react-native';
 
 import {
@@ -14,9 +13,10 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 
 
 export default class TodoHeader extends React.Component {
+
   
-  state ={
-    isVisible:false,
+  state ={ 
+      isVisible:false,
   }
   handleHideAlert = () =>{
     this.setState({isVisible:false});
@@ -24,7 +24,7 @@ export default class TodoHeader extends React.Component {
   handleDisplayAlert = () =>{
     this.setState({isVisible:true});
   }
-  onRowOpen(rowKey, rowMap, toValue) {
+  onRowOpen(rowKey, rowMap,) {
     const rowRef = rowMap[rowKey];
     rowRef.closeRow();
 };

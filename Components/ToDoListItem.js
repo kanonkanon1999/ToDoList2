@@ -8,53 +8,16 @@ import Footer from './Footer';
 const {width} = Dimensions.get('window');
 
 export default class ToDoListItem extends React.Component  {
-
-    state = {
-        todoList: [],
-    };
-
-    addTodo = text => {
-        const list =[].concat(...this.state.todoList);
-        list.push({
-            key: `${Date.now()}`,
-            name: text,
-            isDone: false,
-        });
-        this.setState({
-            todoList:list,
-        });
-    };
-    handleCheck = index => {
-        const todos = [].concat(this.state.todoList);
-        todos[index].isDone = !todos[index].isDone;
-        this.setState({
-            todoList: todos,
-        });
-    };
-    onRowOpen(rowKey, rowMap, toValue) {
-        const rowRef = rowMap[rowKey];
-        rowRef.closeRow();
-    };
-    delete = (index) => () => {
-        const todoList = [].concat(this.state.todoList);
-        todoList.splice(index,1);
-    
-        this.setState({
-          todoList,
-        });
-    };
-    
-    
     render(){
         return (
         <View style={styles.position}>
             <SwipeListView 
                 useFlatList={true}
-                data={this.state.todoList}
-                renderItem={({item,index}) => <TodoRow {...item} onPress={() => {this.handleCheck(index)}}/>}
+                data={this.props.todoList}
+                renderItem={({item,index}) => <TodoRow {...item} onPress={() => {this.props.handleCheck(index)}}/>}
                 renderHiddenItem={({index}) => (
                     <View style={styles.rowBack}>
-                        <TouchableOpacity onPress={this.delete(index)}>
+                        <TouchableOpacity onPress={this.props.delete(index)}>
                             <Text style={styles.rowBackText}>削除</Text>
                         </TouchableOpacity>
                     </View>
@@ -69,7 +32,7 @@ export default class ToDoListItem extends React.Component  {
                 }}
             />
             <KeyboardAvoidingView behavior='padding' keyboardVerticalOffset={55}>
-                <Footer onPress={this.addTodo}/>
+                <Footer onPress={this.props.addTodo}/>
             </KeyboardAvoidingView>
         </View>
         );

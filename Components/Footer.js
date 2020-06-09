@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, TextInput, Dimensions, } from 'react-native';
+import { StyleSheet, View, TextInput, Dimensions, } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 const {width} = Dimensions.get('window');
@@ -20,7 +20,7 @@ export default class Footer extends React.Component {
             this.setState({todoValue:''});
         }
     };
-    onRowOpen(rowKey, rowMap, toValue) {
+    onRowOpen(rowKey, rowMap,) {
         const rowRef = rowMap[rowKey];
         rowRef.closeRow();
     };
@@ -28,6 +28,7 @@ export default class Footer extends React.Component {
   return (
     <View style={styles.footercontainer}>
         <TextInput
+            keyboardType='default'
             maxLength={20}
             returnKeyType='done'
             onSubmitEditing={this.onPress}
