@@ -66,13 +66,19 @@ export default class ToDoListItem extends React.Component  {
                     setTimeout(() => {
                 rowMap[rowKey]&&rowMap[rowKey].closeRow()
                 }, 5000)
-    }}
+                }}
             />
-            <Footer onPress={this.addTodo}/>
+            <KeyboardAvoidingView behavior='padding' keyboardVerticalOffset={55}>
+                <Footer onPress={this.addTodo}/>
+            </KeyboardAvoidingView>
         </View>
         );
     }}
 const styles = StyleSheet.create({
+    position:{
+        height:610,
+        justifyContent:'space-between',
+    },
     rowBackText:{
         marginRight:20,
         marginTop:20,

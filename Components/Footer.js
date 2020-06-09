@@ -28,6 +28,7 @@ export default class Footer extends React.Component {
   return (
     <View style={styles.footercontainer}>
         <TextInput
+            maxLength={20}
             returnKeyType='done'
             onSubmitEditing={this.onPress}
             onChangeText={this.onChange}
@@ -60,6 +61,7 @@ const styles = StyleSheet.create({
     footercontainer:{
         height:60,
         backgroundColor:'#fff',
+        marginBottom:5,
     },
     footerIcon: {
        color:'#323333',

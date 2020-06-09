@@ -1,8 +1,9 @@
 import React from 'react';
-import { StyleSheet, Text, View, KeyboardAvoidingView, TouchableWithoutFeedback, Keyboard} from 'react-native';
+import { StyleSheet,  View, KeyboardAvoidingView,} from 'react-native';
 import ToDoListItem from './Components/ToDoListItem';
 import Header from './Components/Header';
 import Wrapper from './Components/Wrapper';
+import Footer from './Components/Footer';
 
 
 export default function App() {
@@ -11,15 +12,15 @@ export default function App() {
       <Wrapper>
         <Header/>
       </Wrapper>
-      <KeyboardAvoidingView>
         <ToDoListItem/>
-      </KeyboardAvoidingView>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
+    justifyContent:'space-between',
     flex:1,
+    backgroundColor:'#f9dfd5'
   },
 });

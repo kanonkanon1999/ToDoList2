@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, TouchableWithoutFeedback, Keyboard, View, TouchableOpacity} from 'react-native';
+import { StyleSheet,  Keyboard,  TouchableOpacity} from 'react-native';
 
 
 export default function Wrapper({children}) {
