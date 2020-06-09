@@ -13,10 +13,9 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 
 
 export default class TodoHeader extends React.Component {
-
   
-  state ={ 
-      isVisible:false,
+  state ={
+    isVisible:false,
   }
   handleHideAlert = () =>{
     this.setState({isVisible:false});

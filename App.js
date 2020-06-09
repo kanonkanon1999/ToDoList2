@@ -1,14 +1,16 @@
 import React from 'react';
-import { StyleSheet,  View,} from 'react-native';
+import { StyleSheet,  View, KeyboardAvoidingView,} from 'react-native';
 import ToDoListItem from './Components/ToDoListItem';
 import Header from './Components/Header';
 import Wrapper from './Components/Wrapper';
 
-export default class App extends React.Component{
+
+export default class App extends React.Component {
+
   state = {
     todoList: [],
   };
-  
+
   addTodo = text => {
     const list =[].concat(...this.state.todoList);
     list.push({
@@ -27,14 +29,14 @@ export default class App extends React.Component{
         todoList: todos,
     });
   };
-  onRowOpen(rowKey, rowMap, toValue) {
+  onRowOpen(rowKey, rowMap,) {
     const rowRef = rowMap[rowKey];
     rowRef.closeRow();
   };
   delete = (index) => () => {
     const todoList = [].concat(this.state.todoList);
     todoList.splice(index,1);
-  
+
     this.setState({
       todoList,
     });
@@ -45,7 +47,7 @@ export default class App extends React.Component{
         <Wrapper>
           <Header/>
         </Wrapper>
-          <ToDoListItem/>
+          <ToDoListItem onPress={this.delete(index),this.handleCheck(index)}/>
       </View>
     );
   }

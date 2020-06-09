@@ -6,6 +6,9 @@ import TodoRow from './TodoRow';
 import Footer from './Footer';
 
 const {width} = Dimensions.get('window');
+const {
+    index,
+} = props;
 
 export default class ToDoListItem extends React.Component  {
     render(){
