@@ -6,21 +6,22 @@ import TodoRow from './TodoRow';
 import Footer from './Footer';
 
 const {width} = Dimensions.get('window');
-const {
-    index,
-} = props;
 
 export default class ToDoListItem extends React.Component  {
+    onRowOpen(rowKey, rowMap,) {
+        const rowRef = rowMap[rowKey];
+        rowRef.closeRow();
+    };
     render(){
         return (
         <View style={styles.position}>
             <SwipeListView 
                 useFlatList={true}
                 data={this.props.todoList}
-                renderItem={({item,index}) => <TodoRow {...item} onPress={() => {this.props.handleCheck(index)}}/>}
+                renderItem={({item,index}) => <TodoRow {...item} onPress={() => {this.props.onHandleCheck(index)}}/>}
                 renderHiddenItem={({index}) => (
                     <View style={styles.rowBack}>
-                        <TouchableOpacity onPress={this.props.delete(index)}>
+                        <TouchableOpacity onPress={this.props.onDelete(index)}>
                             <Text style={styles.rowBackText}>削除</Text>
                         </TouchableOpacity>
                     </View>
@@ -35,7 +36,7 @@ export default class ToDoListItem extends React.Component  {
                 }}
             />
             <KeyboardAvoidingView behavior='padding' keyboardVerticalOffset={55}>
-                <Footer onPress={this.props.addTodo}/>
+                <Footer onAdd={() => this.props.addTodo}/>
             </KeyboardAvoidingView>
         </View>
         );

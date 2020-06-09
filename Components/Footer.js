@@ -13,14 +13,14 @@ export default class Footer extends React.Component {
     onChange = text => {
         this.setState({todoValue: text});
     };
-    onPress = () => {
+    onClearText = () => {
         if(this.state.todoValue !== ''){
-            this.props.onPress(this.state.todoValue);
+            this.props.onAdd(this.state.todoValue);
             this.textInput.clear();
             this.setState({todoValue:''});
         }
     };
-    onRowOpen(rowKey, rowMap, toValue) {
+    onRowOpen(rowKey, rowMap,) {
         const rowRef = rowMap[rowKey];
         rowRef.closeRow();
     };
@@ -40,7 +40,7 @@ export default class Footer extends React.Component {
             }}
         />
         <Icon
-            onPress={this.onPress}
+            onPress={() => this.onClearText, (text) => this.props.onAdd(text)}
             name={'pencil-square-o'}
             style={styles.footerIcon}
             size={35}

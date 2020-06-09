@@ -29,10 +29,6 @@ export default class App extends React.Component {
         todoList: todos,
     });
   };
-  onRowOpen(rowKey, rowMap,) {
-    const rowRef = rowMap[rowKey];
-    rowRef.closeRow();
-  };
   delete = (index) => () => {
     const todoList = [].concat(this.state.todoList);
     todoList.splice(index,1);
@@ -47,7 +43,7 @@ export default class App extends React.Component {
         <Wrapper>
           <Header/>
         </Wrapper>
-          <ToDoListItem onPress={this.delete(index),this.handleCheck(index)}/>
+          <ToDoListItem onDelete={this.delete} onHandleChech={() => this.handleCheck}/>
       </View>
     );
   }
