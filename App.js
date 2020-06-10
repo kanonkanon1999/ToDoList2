@@ -26,8 +26,6 @@ export default class App extends React.Component {
     });
   };
   addTodo = (text) => {
-    console.log('Hello!');
-    console.log(this.state.todoList);
     if(this.state.todoValue !== ''){
         const list =[].concat(...this.state.todoList);
         list.push({
@@ -37,10 +35,10 @@ export default class App extends React.Component {
         });
         this.setState({
             todoList:list,
-            todoValue:''
+            todoValue:'',
         });
-        console.log('See you!');
     }
+    console.log(this.state.todoList);
   };
   render(){
     return (
