@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, TextInput, Dimensions, } from 'react-native';
+import { StyleSheet, View, TextInput, Dimensions, } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 const {width} = Dimensions.get('window');
@@ -30,7 +30,7 @@ export default class Footer extends React.Component {
         <TextInput
             maxLength={20}
             returnKeyType='done'
-            onSubmitEditing={this.onPress}
+            onSubmitEditing={(text) => this.props.onAdd(text)}
             onChangeText={this.onChange}
             autoCapitalize='none'
             placeholder={'新規入力'}
