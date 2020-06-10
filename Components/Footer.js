@@ -17,13 +17,17 @@ export default class Footer extends React.Component {
         const rowRef = rowMap[rowKey];
         rowRef.closeRow();
     };
+    addTodo　= () =>{
+        this.props.onAdd(this.state.todoValue);
+        this.textInput.clear()
+    };
  render(){
   return (
     <View style={styles.footercontainer}>
         <TextInput
             maxLength={20}
             returnKeyType='done'
-            onSubmitEditing={(text) => this.props.onAdd(text)}
+            onSubmitEditing={this.addTodo}
             onChangeText={this.onChange}
             autoCapitalize='none'
             placeholder={'新規入力'}
@@ -33,7 +37,7 @@ export default class Footer extends React.Component {
             }}
         />
         <Icon
-            onPress={(text) => this.props.onAdd(text)}
+            onPress={this.addTodo}
             name={'pencil-square-o'}
             style={styles.footerIcon}
             size={35}

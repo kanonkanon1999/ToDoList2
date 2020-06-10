@@ -10,21 +10,6 @@ export default class App extends React.Component {
   state = {
     todoList: [],
   };
-  addTodo = text => () => {
-    if(this.state.todoValue !== ''){
-        const list =[].concat(...this.state.todoList);
-        list.push({
-          key: `${Date.now()}`,
-          name: text,
-          isDone: false,
-        });
-        this.setState({
-            todoList:list,
-            todoValue:''
-        });
-        this.textInput.clear();
-    }
-  };
   handleCheck = index => {
     const todos = [].concat(this.state.todoList);
     todos[index].isDone = !todos[index].isDone;
@@ -40,13 +25,30 @@ export default class App extends React.Component {
       todoList,
     });
   };
+  addTodo = (text) => {
+    console.log('Hello!');
+    console.log(this.state.todoList);
+    if(this.state.todoValue !== ''){
+        const list =[].concat(...this.state.todoList);
+        list.push({
+          key: `${Date.now()}`,
+          name: text,
+          isDone: false,
+        });
+        this.setState({
+            todoList:list,
+            todoValue:''
+        });
+        console.log('See you!');
+    }
+  };
   render(){
     return (
       <View style={styles.container}>
         <Wrapper>
           <Header/>
         </Wrapper>
-          <ToDoListItem onDelete={this.delete} onHandleCheck={() => this.handleCheck}/>
+          <ToDoListItem onDelete={this.delete} onHandleCheck={() => this.handleCheck } onAdd={this.addTodo}/>
       </View>
     );
   }

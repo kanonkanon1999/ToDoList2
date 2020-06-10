@@ -36,7 +36,7 @@ export default class ToDoListItem extends React.Component  {
                 }}
             />
             <KeyboardAvoidingView behavior='padding' keyboardVerticalOffset={55}>
-                <Footer onAdd={this.props.addTodo}/>
+                <Footer onAdd={this.props.onAdd}/>
             </KeyboardAvoidingView>
         </View>
         );
