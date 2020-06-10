@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet,  View, KeyboardAvoidingView,} from 'react-native';
+import { StyleSheet,  View,} from 'react-native';
 import ToDoListItem from './Components/ToDoListItem';
 import Header from './Components/Header';
 import Wrapper from './Components/Wrapper';
@@ -10,17 +10,20 @@ export default class App extends React.Component {
   state = {
     todoList: [],
   };
-
-  addTodo = text => {
-    const list =[].concat(...this.state.todoList);
-    list.push({
-        key: `${Date.now()}`,
-        name: text,
-        isDone: false,
-    });
-    this.setState({
-        todoList:list,
-    });
+  addTodo = text => () => {
+    if(this.state.todoValue !== ''){
+        const list =[].concat(...this.state.todoList);
+        list.push({
+          key: `${Date.now()}`,
+          name: text,
+          isDone: false,
+        });
+        this.setState({
+            todoList:list,
+            todoValue:''
+        });
+        this.textInput.clear();
+    }
   };
   handleCheck = index => {
     const todos = [].concat(this.state.todoList);
@@ -43,7 +46,7 @@ export default class App extends React.Component {
         <Wrapper>
           <Header/>
         </Wrapper>
-          <ToDoListItem onDelete={this.delete} onHandleChech={() => this.handleCheck}/>
+          <ToDoListItem onDelete={this.delete} onHandleCheck={() => this.handleCheck}/>
       </View>
     );
   }
