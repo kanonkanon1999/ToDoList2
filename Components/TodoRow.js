@@ -8,7 +8,7 @@ export default function TodoRow(props) {
     const {
         isDone,
         name,
-        onPress,
+        onHandleCheck,
     } = props;
   return (
     <View style={styles.ToDoListItem}>
@@ -17,7 +17,7 @@ export default function TodoRow(props) {
           style={[styles.CheckBox,{color: isDone ? 'gray' : '#323333'}]}
           isDone={isDone}
           size={35}
-          onPress={onPress}
+          onPress={onHandleCheck}
       />
       <Text
           style={[styles.text,
@@ -26,7 +26,7 @@ export default function TodoRow(props) {
                   color: isDone ? 'gray' : '#323333',
               },
         ]}
-        onPress={onPress}>
+        onPress={onHandleCheck}>
         {name}
       </Text>
     </View>
