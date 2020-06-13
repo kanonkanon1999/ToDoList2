@@ -10,8 +10,8 @@ export default class App extends React.Component {
   state = {
     todoList: [],
   };
-  handleCheck = (index) =>  {
-    console.log('Hello!');
+  handleCheck = (index) => () => {
+
     const todos = [].concat(this.state.todoList);
     todos[index].isDone = !todos[index].isDone;
     this.setState({
@@ -49,7 +49,7 @@ export default class App extends React.Component {
           <ToDoListItem 
           todoList={this.state.todoList} 
           onDelete={this.delete} 
-          onHandleCheck={() => this.handleCheck } 
+          onHandleCheck={this.handleCheck } 
           onAdd={this.addTodo}
           />
       </View>
