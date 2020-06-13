@@ -10,7 +10,7 @@ export default class App extends React.Component {
   state = {
     todoList: [],
   };
-  handleCheck = index => {
+  handleCheck = (index) =>  {
     console.log('Hello!');
     const todos = [].concat(this.state.todoList);
     todos[index].isDone = !todos[index].isDone;

@@ -9,7 +9,8 @@ export default function TodoRow(props) {
         isDone,
         name,
         onHandleCheck,
-    } = props;
+     } = props;
+     console.log(props);
   return (
     <View style={styles.ToDoListItem}>
       <Icon

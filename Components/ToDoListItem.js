@@ -18,7 +18,11 @@ export default class ToDoListItem extends React.Component  {
             <SwipeListView 
                 useFlatList={true}
                 data={this.props.todoList}
-                renderItem={({item,index}) => <TodoRow {...item} onHandleCheck={() => {this.props.onHandleCheck(index)}} todoList={this.props.todoList}/>}
+                renderItem={({item,index}) => 
+                <TodoRow {...item} 
+                onHandleCheck={() => {this.props.onHandleCheck(index)}} 
+                todoList={this.props.todoList}
+                />}
                 renderHiddenItem={({index}) => (
                     <View style={styles.rowBack}>
                         <TouchableOpacity onPress={this.props.onDelete(index)}>
