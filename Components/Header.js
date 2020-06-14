@@ -29,7 +29,7 @@ export default class TodoHeader extends React.Component {
           style={styles.header}
           leftComponent={<Icon name= 'paint-brush' size={20} style={styles.leftIcon}/>}
           centerComponent={{ text: 'To Do List', style: { color: '#fff', fontSize:20, },  }}
-          rightComponent={<Icon onPress={this.props.onAlert} name= 'trash-o' size={20}  style={styles.rightIcon}/>}
+          rightComponent={<Icon onPress={this.props.onAlert()} name= 'trash-o' size={20}  style={styles.rightIcon}/>}
           containerStyle={{
           backgroundColor: '#e06a3b',
           }}
