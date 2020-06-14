@@ -3,10 +3,11 @@ import {
      StyleSheet, 
      Text, 
      View,
+     Alert,
     } from 'react-native';
 
 import {
-    Header,Overlay,Button,
+    Header,
 } from 'react-native-elements';
 
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -16,12 +17,6 @@ export default class TodoHeader extends React.Component {
   
   state ={
     isVisible:false,
-  }
-  handleHideAlert = () =>{
-    this.setState({isVisible:false});
-  }
-  handleDisplayAlert = () =>{
-    this.setState({isVisible:true});
   }
   onRowOpen(rowKey, rowMap,) {
     const rowRef = rowMap[rowKey];
@@ -34,31 +29,11 @@ export default class TodoHeader extends React.Component {
           style={styles.header}
           leftComponent={<Icon name= 'paint-brush' size={20} style={styles.leftIcon}/>}
           centerComponent={{ text: 'To Do List', style: { color: '#fff', fontSize:20, },  }}
-          rightComponent={<Icon onPress={this.handleDisplayAlert} name= 'trash-o' size={20}  style={styles.rightIcon}/>}
+          rightComponent={<Icon onPress={this.props.onAlert} name= 'trash-o' size={20}  style={styles.rightIcon}/>}
           containerStyle={{
           backgroundColor: '#e06a3b',
           }}
           />
-          <Overlay
-              isVisible={this.state.isVisible}
-          >
-            <View >
-                <Text style={styles.alert}>全て削除しますか？</Text>
-                <View style={styles.button}>
-                    <Button 
-                      onPress={this.handleHideAlert}
-                      titleStyle={styles.cancel}
-                      type="clear"
-                      title='キャンセル'
-                    />
-                    <Button
-                      titleStyle={styles.delete}
-                      type="clear"
-                      title='削除'
-                    />
-                </View>
-            </View>
-          </Overlay>
       </View>
     );
   }
