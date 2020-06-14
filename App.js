@@ -1,8 +1,9 @@
 import React from 'react';
-import { StyleSheet,  View, Alert,} from 'react-native';
+import { StyleSheet,  View, Text,} from 'react-native';
 import ToDoListItem from './Components/ToDoListItem';
 import Header from './Components/Header';
 import Wrapper from './Components/Wrapper';
+import TodoAlert from './Components/Alert';
 
 
 export default class App extends React.Component {
@@ -40,32 +41,14 @@ export default class App extends React.Component {
         todoValue:''
       });
   };
-  showAlert = () => {
-    Alert.alert('全て削除しますか？',[
-      {
-        text: '削除',
-        onPress: ()　=>　{
-          console.log('delate');
-        },
-        style: 'delate',
-      },
-      {
-        text:'キャンセル',
-        onPress: () => {
-          console.log('cancel');
-        },
-        style: 'cancel',
-      },
-    ]);
-  }
+  
   render(){
     return (
       <View style={styles.container}>
         <Wrapper>
-          <Header
-          onAlert={this.showAlert}
-          />
+          <Header/>
         </Wrapper>
+        <TodoAlert/>
           <ToDoListItem 
           todoList={this.state.todoList} 
           onDelete={this.delete} 
