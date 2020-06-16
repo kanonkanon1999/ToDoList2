@@ -13,10 +13,6 @@ export default class Footer extends React.Component {
     onChange = text => {
         this.setState({todoValue: text});
     };
-    onRowOpen(rowKey, rowMap,) {
-        const rowRef = rowMap[rowKey];
-        rowRef.closeRow();
-    };
     addTodo　= () =>{
         this.props.onAdd(this.state.todoValue);
         this.textInput.clear()
@@ -55,7 +51,7 @@ const styles = StyleSheet.create({
         height:60,
         width:width,
         alignItems:'center',
-        position: 'absolute',
+        position:'absolute',
         fontSize:20,
         paddingLeft:25,
     },

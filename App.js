@@ -1,8 +1,9 @@
 import React from 'react';
-import { StyleSheet,  View, Text, Alert,} from 'react-native';
+import { StyleSheet,  View, Text, Alert, KeyboardAvoidingView,} from 'react-native';
 import ToDoListItem from './Components/ToDoListItem';
 import Header from './Components/Header';
 import Wrapper from './Components/Wrapper';
+import Footer from './Components/Footer';
 
 
 export default class App extends React.Component {
@@ -70,12 +71,14 @@ export default class App extends React.Component {
           todoList={this.state.todoList} 
           />
         </Wrapper>
+        <KeyboardAvoidingView behavior='padding' keyboardVerticalOffset={55}>
           <ToDoListItem 
           todoList={this.state.todoList} 
           onDelete={this.delete} 
           onHandleCheck={this.handleCheck} 
           onAdd={this.addTodo}
           />
+        </KeyboardAvoidingView>
       </View>
     );
   }
