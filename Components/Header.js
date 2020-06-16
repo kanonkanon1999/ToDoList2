@@ -26,12 +26,13 @@ export default class TodoHeader extends React.Component {
     return (
       <View style={styles.haderContainer}>
         <Header
+          todoList={this.props.todoList}
           style={styles.header}
           leftComponent={<Icon name= 'paint-brush' size={20} style={styles.leftIcon}/>}
           centerComponent={{ text: 'To Do List', style: { color: '#fff', fontSize:20, },  }}
-          rightComponent={<Icon name= 'trash-o' size={20}  style={styles.rightIcon}/>}
+          rightComponent={<Icon　onPress={this.props.onAlert()} name= 'trash-o' size={20}  style={styles.rightIcon}/>}
           containerStyle={{
-          backgroundColor: '#e06a3b',
+          backgroundColor: '#b43d88',
           }}
           />
       </View>

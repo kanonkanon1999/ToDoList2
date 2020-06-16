@@ -1,9 +1,8 @@
 import React from 'react';
-import { StyleSheet,  View, Text,} from 'react-native';
+import { StyleSheet,  View, Text, Alert,} from 'react-native';
 import ToDoListItem from './Components/ToDoListItem';
 import Header from './Components/Header';
 import Wrapper from './Components/Wrapper';
-import TodoAlert from './Components/Alert';
 
 
 export default class App extends React.Component {
@@ -12,7 +11,6 @@ export default class App extends React.Component {
     todoList: [],
   };
   handleCheck = (index) => () => {
-
     const todos = [].concat(this.state.todoList);
     todos[index].isDone = !todos[index].isDone;
     this.setState({
@@ -38,17 +36,40 @@ export default class App extends React.Component {
       });
       this.setState({
         todoList:list,
-        todoValue:''
       });
   };
+  handleAlert = () => () => {
+    Alert.alert('全て削除しますか？','',[
+      {
+        text: '削除',
+        onPress: () => {this.handleDeleteAll()},
+        style: 'default',
+      },
+      {
+        text: 'キャンセル',
+        style: 'cancel',
+      },
+    ]);
+  }
+  handleDeleteAll = () => {
+    const todoList = [].concat(this.state.todoList);
+    todoList.splice(0);
+
+    this.setState({
+      todoList,
+    });
+  };
+
   
   render(){
     return (
       <View style={styles.container}>
         <Wrapper>
-          <Header/>
+          <Header 
+          onAlert={this.handleAlert}
+          todoList={this.state.todoList} 
+          />
         </Wrapper>
-        <TodoAlert/>
           <ToDoListItem 
           todoList={this.state.todoList} 
           onDelete={this.delete} 
@@ -64,6 +85,6 @@ const styles = StyleSheet.create({
   container: {
     justifyContent:'space-between',
     flex:1,
-    backgroundColor:'#f9dfd5'
+    backgroundColor:'#f0d0e5'
   },
 });
