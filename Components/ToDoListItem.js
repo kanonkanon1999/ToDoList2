@@ -1,14 +1,17 @@
 import React from 'react';
-import { StyleSheet, Text, View, Dimensions, TouchableOpacity, KeyboardAvoidingView, } from 'react-native';
+import { StyleSheet, Text, View, Dimensions, TouchableOpacity, KeyboardAvoidingView, FlatList, } from 'react-native';
 import { SwipeListView } from 'react-native-swipe-list-view';
 
 import TodoRow from './TodoRow';
 import Footer from './Footer';
-import { Header } from 'react-native/Libraries/NewAppScreen';
 
 const {width} = Dimensions.get('window');
 
 export default class ToDoListItem extends React.Component  {
+    constructor(props) {
+        super(props);
+        this.listRef = React.createRef();
+      }
     onRowOpen(rowKey, rowMap,) {
         const rowRef = rowMap[rowKey];
         rowRef.closeRow();
@@ -17,6 +20,7 @@ export default class ToDoListItem extends React.Component  {
         return (
         <View style={styles.position}>
             <SwipeListView 
+                ref={this.listRef}
                 useFlatList={true}
                 data={this.props.todoList}
                 renderItem={({item,index}) => 
@@ -40,8 +44,8 @@ export default class ToDoListItem extends React.Component  {
                 }, 5000)
                 }}
             />
-            <KeyboardAvoidingView behavior='padding' keyboardVerticalOffset={55}>
-                <Footer onAdd={this.props.onAdd}/>
+            <KeyboardAvoidingView behavior='padding' keyboardVerticalOffset={60}>
+              <Footer onAdd={this.props.onAdd}　listRef={this.listRef}/>
             </KeyboardAvoidingView>
         </View>
         );

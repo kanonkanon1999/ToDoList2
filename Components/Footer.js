@@ -19,6 +19,7 @@ export default class Footer extends React.Component {
         this.setState({
             todoValue:''
           });
+        this.props.listRef.scrollToEnd();
     };
  render(){
      console.log(this.state.todoValue);
@@ -56,9 +57,7 @@ const styles = StyleSheet.create({
         paddingLeft:25,
     },
     footercontainer:{
-        height:60,
         backgroundColor:'#fff',
-        marginBottom:5,
     },
     footerIcon: {
        color:'#323333',

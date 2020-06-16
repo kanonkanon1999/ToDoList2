@@ -1,13 +1,13 @@
 import React from 'react';
-import { StyleSheet,  View, Text, Alert, KeyboardAvoidingView,} from 'react-native';
+import { StyleSheet, Alert, View, } from 'react-native';
 import ToDoListItem from './Components/ToDoListItem';
 import Header from './Components/Header';
 import Wrapper from './Components/Wrapper';
-import Footer from './Components/Footer';
-
 
 export default class App extends React.Component {
-
+  constructor(props) {
+    super(props);
+  }
   state = {
     todoList: [],
   };
@@ -29,7 +29,6 @@ export default class App extends React.Component {
   addTodo = (text) => {
     if (!text) return;
       const list =[].concat(...this.state.todoList);
-
       list.push({
         key: `${Date.now()}`,
         name: text,
@@ -60,7 +59,6 @@ export default class App extends React.Component {
       todoList,
     });
   };
-
   
   render(){
     return (
@@ -71,14 +69,12 @@ export default class App extends React.Component {
           todoList={this.state.todoList} 
           />
         </Wrapper>
-        <KeyboardAvoidingView behavior='padding' keyboardVerticalOffset={55}>
           <ToDoListItem 
           todoList={this.state.todoList} 
           onDelete={this.delete} 
           onHandleCheck={this.handleCheck} 
           onAdd={this.addTodo}
           />
-        </KeyboardAvoidingView>
       </View>
     );
   }
