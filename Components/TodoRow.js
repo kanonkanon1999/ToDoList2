@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
         borderBottomColor:'#fff',
         borderBottomWidth:2,
         width:width,
-        backgroundColor: '#f0d0e5',
+        backgroundColor: '#F4D2DE',
     },
     CheckBox: {
         marginLeft:20,
