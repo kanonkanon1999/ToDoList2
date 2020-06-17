@@ -14,15 +14,14 @@ export default class Footer extends React.Component {
         this.setState({todoValue: text});
     };
     addTodo　= () =>{
+        this.props.listViewRef.scrollToEnd();
         this.props.onAdd(this.state.todoValue);
         this.textInput.clear()
         this.setState({
             todoValue:''
           });
-        this.props.listRef.scrollToEnd();
     };
  render(){
-     console.log(this.state.todoValue);
   return (
     <View style={styles.footercontainer}>
         <TextInput

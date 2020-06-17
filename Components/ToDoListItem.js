@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, Dimensions, TouchableOpacity, KeyboardAvoidingView, FlatList, } from 'react-native';
+import { StyleSheet, Text, View, Dimensions, TouchableOpacity, KeyboardAvoidingView, } from 'react-native';
 import { SwipeListView } from 'react-native-swipe-list-view';
 
 import TodoRow from './TodoRow';
@@ -10,7 +10,7 @@ const {width} = Dimensions.get('window');
 export default class ToDoListItem extends React.Component  {
     constructor(props) {
         super(props);
-        this.listRef = React.createRef();
+
       }
     onRowOpen(rowKey, rowMap,) {
         const rowRef = rowMap[rowKey];
@@ -20,7 +20,7 @@ export default class ToDoListItem extends React.Component  {
         return (
         <View style={styles.position}>
             <SwipeListView 
-                ref={this.listRef}
+                listViewRef={ ref => this.swipeListViewRef = ref }
                 useFlatList={true}
                 data={this.props.todoList}
                 renderItem={({item,index}) => 
@@ -45,7 +45,7 @@ export default class ToDoListItem extends React.Component  {
                 }}
             />
             <KeyboardAvoidingView behavior='padding' keyboardVerticalOffset={60}>
-              <Footer onAdd={this.props.onAdd}　listRef={this.listRef}/>
+              <Footer onAdd={this.props.onAdd}　listViewRef={this.swipeListViewRef}/>
             </KeyboardAvoidingView>
         </View>
         );
