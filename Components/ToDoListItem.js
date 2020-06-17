@@ -20,7 +20,6 @@ export default class ToDoListItem extends React.Component  {
         return (
         <View style={styles.position}>
             <SwipeListView 
-                listViewRef={ ref => this.swipeListViewRef = ref }
                 useFlatList={true}
                 data={this.props.todoList}
                 renderItem={({item,index}) => 
@@ -45,7 +44,7 @@ export default class ToDoListItem extends React.Component  {
                 }}
             />
             <KeyboardAvoidingView behavior='padding' keyboardVerticalOffset={60}>
-              <Footer onAdd={this.props.onAdd}　listViewRef={this.swipeListViewRef}/>
+              <Footer onAdd={this.props.onAdd}/>
             </KeyboardAvoidingView>
         </View>
         );

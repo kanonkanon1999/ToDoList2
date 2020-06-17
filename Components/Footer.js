@@ -14,7 +14,6 @@ export default class Footer extends React.Component {
         this.setState({todoValue: text});
     };
     addTodo　= () =>{
-        this.props.listViewRef.scrollToEnd();
         this.props.onAdd(this.state.todoValue);
         this.textInput.clear()
         this.setState({
