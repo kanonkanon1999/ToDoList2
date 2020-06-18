@@ -36,7 +36,6 @@ export default class TodoHeader extends React.Component {
     );
   }
   render(){
-    console.log(this.mainColors);
     return (
       <View style={styles.haderContainer}>
         <Header

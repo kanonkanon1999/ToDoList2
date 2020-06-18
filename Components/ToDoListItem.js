@@ -10,7 +10,7 @@ const {width} = Dimensions.get('window');
 export default class ToDoListItem extends React.Component  {
     constructor(props) {
         super(props);
-
+        this.ref = null;
       }
     onRowOpen(rowKey, rowMap,) {
         const rowRef = rowMap[rowKey];
@@ -20,6 +20,7 @@ export default class ToDoListItem extends React.Component  {
         return (
         <View style={styles.position}>
             <SwipeListView 
+                listViewRef={ref =>this.ref = ref}
                 useFlatList={true}
                 data={this.props.todoList}
                 renderItem={({item,index}) => 
@@ -44,7 +45,7 @@ export default class ToDoListItem extends React.Component  {
                 }}
             />
             <KeyboardAvoidingView behavior='padding' keyboardVerticalOffset={60}>
-              <Footer onAdd={this.props.onAdd}/>
+              <Footer onAdd={this.props.onAdd} scrollRef={this.ref} todoList={this.props.todoList} />
             </KeyboardAvoidingView>
         </View>
         );
