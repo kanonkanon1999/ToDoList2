@@ -19,7 +19,20 @@ export default class TodoHeader extends React.Component {
   
   state ={
     isVisible:false,
-    isVisible:false,
+  }
+  renderIcons() {
+    return this.props.colors.map((color) => {
+        return (
+            <Icon 
+                style={{ color: color.mainColor, padding:5, }}
+                name='circle'
+                size={45}
+                key={color.id}
+                id={color.id}
+                onPress={this.props.onChangeColor(color)}
+            />
+        );
+    });
   }
   onRowOpen(rowKey, rowMap,) {
     const rowRef = rowMap[rowKey];
@@ -52,6 +65,7 @@ export default class TodoHeader extends React.Component {
             <View>
               <Text　style={styles.colorChangeText}>テーマカラーを選択</Text>
               <View style={{flexDirection:'row'}}>
+              {this.renderIcons()}
               </View>
               <Button title='決定'　buttonStyle={styles.buttonStyle} onPress={this.handlehideOverlay()}/>
             </View>

@@ -7,6 +7,7 @@ import Wrapper from './Components/Wrapper';
 export default class App extends React.Component {
   state = {
     todoList: [],
+    backgroundColor: '#F4D2DE',
   };
   colors=[
     {id: 1, mainColor: '#CA3C6E', backColor: '#F4D2DE'},
@@ -15,6 +16,14 @@ export default class App extends React.Component {
     {id: 4, mainColor: '#1EAF9E', backColor: '#C9EFEB'},
     {id: 5, mainColor: '#8858AA', backColor: '#E6D7EE'},
   ]
+  handleChangeColor = (color) => () => {
+    console.log(color.id);
+    const colors = this.state.colors;
+    selectedColor = colors.filter((color) =>{
+      return id = color.id;
+    });
+    console.log(selectedColor);
+  }
   handleCheck = (index) => () => {
     const todos = [].concat(this.state.todoList);
     todos[index].isDone = !todos[index].isDone;
@@ -69,6 +78,7 @@ export default class App extends React.Component {
       <View style={styles.container}>
         <Wrapper>
           <Header 
+          onChangeColor={this.handleChangeColor}
           colors={this.colors}
           onAlert={this.handleAlert}
           todoList={this.state.todoList} 

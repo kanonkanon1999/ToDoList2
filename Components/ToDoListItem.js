@@ -20,6 +20,9 @@ export default class ToDoListItem extends React.Component  {
         return (
         <View style={styles.position}>
             <SwipeListView 
+                onContentSizeChange={() => {
+                    this.ref.scrollToEnd();
+                }}
                 listViewRef={ref =>this.ref = ref}
                 useFlatList={true}
                 data={this.props.todoList}
