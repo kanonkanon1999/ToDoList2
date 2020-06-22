@@ -37,7 +37,7 @@ export default class TodoHeader extends React.Component {
   onRowOpen(rowKey, rowMap,) {
     const rowRef = rowMap[rowKey];
     rowRef.closeRow();
-  };
+  }
   handleOverlay = () => () => {
     this.setState(
       {isVisible:true}
@@ -58,7 +58,7 @@ export default class TodoHeader extends React.Component {
           centerComponent={{ text: 'To Do List', style: { color: '#fff', fontSize:20, },  }}
           rightComponent={<Icon　onPress={this.props.onAlert()} name= 'trash-o' size={20}  style={styles.rightIcon}/>}
           containerStyle={{
-          backgroundColor: '#CA3C6E',
+          backgroundColor: this.props.mainColor,
           }}
           />
           <Overlay isVisible={this.state.isVisible} onBackdropPress={this.handlehideOverlay()} overlayStyle={styles.overlay}>

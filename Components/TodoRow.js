@@ -9,9 +9,17 @@ export default function TodoRow(props) {
         isDone,
         name,
         onHandleCheck,
+        backColor
      } = props;
   return (
-    <View style={styles.ToDoListItem}>
+    <View style={{
+        height:60,
+        flexDirection: 'row',
+        borderBottomColor:'#fff',
+        borderBottomWidth:2,
+        width:width,
+        backgroundColor: backColor,
+    }}>
       <Icon
           name={isDone ? 'check-box' : 'check-box-outline-blank'}
           style={[styles.CheckBox,{color: isDone ? 'gray' : '#323333'}]}
@@ -39,14 +47,6 @@ const styles = StyleSheet.create({
         marginTop:17,
         fontWeight: '400',
         fontSize:20,
-    },
-    ToDoListItem: {
-        height:60,
-        flexDirection: 'row',
-        borderBottomColor:'#fff',
-        borderBottomWidth:2,
-        width:width,
-        backgroundColor: '#F4D2DE',
     },
     CheckBox: {
         marginLeft:20,

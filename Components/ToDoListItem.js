@@ -28,6 +28,7 @@ export default class ToDoListItem extends React.Component  {
                 data={this.props.todoList}
                 renderItem={({item,index}) => 
                 <TodoRow {...item} 
+                backColor={this.props.backColor}
                 onHandleCheck={this.props.onHandleCheck(index)}
                 todoList={this.props.todoList}
                 />}

@@ -1,13 +1,16 @@
 import React from 'react';
-import { StyleSheet, Alert, View, } from 'react-native';
+import { StyleSheet, Alert, View, AsyncStorage , } from 'react-native';
 import ToDoListItem from './Components/ToDoListItem';
 import Header from './Components/Header';
 import Wrapper from './Components/Wrapper';
 
+
 export default class App extends React.Component {
   state = {
     todoList: [],
-    backgroundColor: '#F4D2DE',
+    id: 4,
+    mainColor:'#1EAF9E',
+    backColor: '#C9EFEB',
   };
   colors=[
     {id: 1, mainColor: '#CA3C6E', backColor: '#F4D2DE'},
@@ -16,13 +19,36 @@ export default class App extends React.Component {
     {id: 4, mainColor: '#1EAF9E', backColor: '#C9EFEB'},
     {id: 5, mainColor: '#8858AA', backColor: '#E6D7EE'},
   ]
+  async setData() {
+    let todoList = this.state.todoList;
+    try {
+      await AsyncStorage.setItem('todoList', JSON.stringify(todoList));
+      console.log('success to set key and value.');
+    } catch (error) {
+      console.log("Error retrieving data" + error);
+    }
+  }
+
+  getData = async () => {
+    let todoList = await AsyncStorage.getItem('todoList');
+    let parsed = JSON.parse(todoList);
+    try {
+      if(parsed !== null){
+        console.log(parsed);
+      }else{
+        console.log('value is not registered.');
+      }
+    } catch (error) {
+      console.log("Error resetting data" + error);
+    }
+  }
+
   handleChangeColor = (color) => () => {
-    console.log(color.id);
-    const colors = this.state.colors;
-    selectedColor = colors.filter((color) =>{
-      return id = color.id;
+    this.setState({
+      id: color.id,
+      mainColor: color.mainColor,
+      backColor: color.backColor,
     });
-    console.log(selectedColor);
   }
   handleCheck = (index) => () => {
     const todos = [].concat(this.state.todoList);
@@ -50,6 +76,10 @@ export default class App extends React.Component {
       this.setState({
         todoList:list,
       });
+      console.log(list);
+      console.log(this.state.todoList);
+      this.setData();
+      this.getData();
   };
   handleAlert = () => () => {
     Alert.alert('全て削除しますか？','',[
@@ -75,9 +105,11 @@ export default class App extends React.Component {
   
   render(){
     return (
-      <View style={styles.container}>
+      <View style={{ backgroundColor:this.state.backColor,justifyContent:'space-between',flex:1,}}>
         <Wrapper>
           <Header 
+          id={this.state.id}
+          mainColor={this.state.mainColor}
           onChangeColor={this.handleChangeColor}
           colors={this.colors}
           onAlert={this.handleAlert}
@@ -85,6 +117,7 @@ export default class App extends React.Component {
           />
         </Wrapper>
           <ToDoListItem 
+          backColor={this.state.backColor}
           todoList={this.state.todoList} 
           onDelete={this.delete} 
           onHandleCheck={this.handleCheck} 
@@ -96,9 +129,5 @@ export default class App extends React.Component {
   }
 
 const styles = StyleSheet.create({
-  container: {
-    justifyContent:'space-between',
-    flex:1,
-    backgroundColor:'#F4D2DE'
-  },
+  
 });

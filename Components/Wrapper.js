@@ -1,5 +1,5 @@
 import React from 'react';
-import { Keyboard,  TouchableOpacity} from 'react-native';
+import { Keyboard,  TouchableOpacity } from 'react-native';
 
 
 export default function Wrapper({children}) {
