@@ -25,7 +25,7 @@ export default class App extends React.Component {
       await AsyncStorage.setItem('todoList', JSON.stringify(todoList));
       console.log('success to set key and value.');
     } catch (error) {
-      console.log("Error retrieving data" + error);
+      console.log('Error retrieving data' + error);
     }
   }
 
@@ -76,10 +76,6 @@ export default class App extends React.Component {
       this.setState({
         todoList:list,
       });
-      console.log(list);
-      console.log(this.state.todoList);
-      this.setData();
-      this.getData();
   };
   handleAlert = () => () => {
     Alert.alert('全て削除しますか？','',[
@@ -104,6 +100,8 @@ export default class App extends React.Component {
   };
   
   render(){
+    this.setData();
+    this.getData();
     return (
       <View style={{ backgroundColor:this.state.backColor,justifyContent:'space-between',flex:1,}}>
         <Wrapper>
