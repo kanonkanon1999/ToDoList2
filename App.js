@@ -30,7 +30,6 @@ export default class App extends React.Component {
   }
 
   getData = async () => {
-    console.log('getData');
     try {
       const todoString = await AsyncStorage.getItem(LIST);
       if(todoString) {
@@ -43,11 +42,9 @@ export default class App extends React.Component {
   }
 
   async setData(list) {
-    console.log('setData');
     try {
       const todoString = JSON.stringify(list);
-      const res = await AsyncStorage.getItem(LIST);
-　　　 console.log(JSON.parse(res));
+      await AsyncStorage.getItem(LIST);
       await AsyncStorage.setItem(LIST, todoString);
     } catch (e) {
       console.log(e)
