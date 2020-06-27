@@ -5,6 +5,8 @@ import Header from './Components/Header';
 import Wrapper from './Components/Wrapper';
 
 const LIST = "@TODO"
+const MAIN = "@MAIN"
+const BACK = "@BACK"
 
 export default class App extends React.Component {
 
@@ -27,6 +29,8 @@ export default class App extends React.Component {
 
   async componentDidMount() {
     this.getData();
+    this.loadMain();
+    this.loadBack();
   }
 
   getData = async () => {
@@ -40,7 +44,28 @@ export default class App extends React.Component {
       console.log(e)
     }
   }
-
+  loadMain = async () => {
+    try{
+      const mainString = await AsyncStorage.getItem(MAIN);
+      if(mainString){
+        const main = JSON.parse(mainString)
+        this.setState({mainColor: main})
+      }
+      }catch(e){
+        console.log(e);
+    }
+  }
+  loadBack = async () => {
+    try{
+      const backString = await AsyncStorage.getItem(BACK);
+      if(backString){
+        const back = JSON.parse(backString)
+        this.setState({backColor: back})
+      }
+      }catch(e){
+        console.log(e);
+    }
+  }
   async setData(list) {
     try {
       const todoString = JSON.stringify(list);
@@ -48,6 +73,24 @@ export default class App extends React.Component {
       await AsyncStorage.setItem(LIST, todoString);
     } catch (e) {
       console.log(e)
+    }
+  }
+  async saveMain(main) {
+    try{
+      const mainString = JSON.stringify(main);
+      await AsyncStorage.getItem(MAIN);
+      await AsyncStorage.setItem(MAIN,mainString);
+    } catch(e){
+        console.log(e);
+    }
+  }
+  async saveback(back) {
+    try{
+      const backString = JSON.stringify(back);
+      await AsyncStorage.getItem(BACK);
+      await AsyncStorage.setItem(BACK,backString);
+    } catch(e){
+        console.log(e);
     }
   }
   handleChangeColor = (color) => () => {
@@ -107,6 +150,8 @@ export default class App extends React.Component {
   
   render(){
     this.setData(this.state.todoList);
+    this.saveMain(this.state.mainColor);
+    this.saveback(this.state.backColor);
     return (
       <View style={{ backgroundColor:this.state.backColor,justifyContent:'space-between',flex:1,}}>
         <Wrapper>
