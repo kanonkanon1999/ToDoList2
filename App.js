@@ -32,6 +32,17 @@ export default class App extends React.Component {
     this.loadMain();
     this.loadBack();
   }
+  componentDidUpdate(prevProps) {
+    if (this.state.todoList !== prevProps.todoList) {
+      this.setData(this.state.todoList);
+    }
+    if (this.state.mainColor !== prevProps.mainColor) {
+      this.saveMain(this.state.mainColor);
+    }
+    if (this.state.backColor !== prevProps.backColor) {
+      this.saveBack(this.state.backColor);
+    }
+  }
 
   getData = async () => {
     try {
@@ -69,7 +80,6 @@ export default class App extends React.Component {
   async setData(list) {
     try {
       const todoString = JSON.stringify(list);
-      await AsyncStorage.getItem(LIST);
       await AsyncStorage.setItem(LIST, todoString);
     } catch (e) {
       console.log(e)
@@ -78,16 +88,14 @@ export default class App extends React.Component {
   async saveMain(main) {
     try{
       const mainString = JSON.stringify(main);
-      await AsyncStorage.getItem(MAIN);
       await AsyncStorage.setItem(MAIN,mainString);
     } catch(e){
         console.log(e);
     }
   }
-  async saveback(back) {
+  async saveBack(back) {
     try{
       const backString = JSON.stringify(back);
-      await AsyncStorage.getItem(BACK);
       await AsyncStorage.setItem(BACK,backString);
     } catch(e){
         console.log(e);
@@ -99,6 +107,8 @@ export default class App extends React.Component {
       mainColor: color.mainColor,
       backColor: color.backColor,
     });
+    this.saveMain(this.state.mainColor);
+    this.saveBack(this.state.backColor);
   }
   handleCheck = (index) => () => {
     const todos = [].concat(this.state.todoList);
@@ -106,6 +116,7 @@ export default class App extends React.Component {
     this.setState({
         todoList: todos,
     });
+    this.setData(this.state.todoList);
   };
   delete = (index) => () => {
     const todoList = [].concat(this.state.todoList);
@@ -113,6 +124,7 @@ export default class App extends React.Component {
     this.setState({
       todoList,
     });
+    this.setData(this.state.todoList);
   };
   addTodo = (text) => {
     if (!text) return;
@@ -125,6 +137,7 @@ export default class App extends React.Component {
       this.setState({
         todoList:list,
       });
+      this.setData(this.state.todoList);
   };
   handleAlert = () => () => {
     Alert.alert('全て削除しますか？','',[
@@ -146,12 +159,10 @@ export default class App extends React.Component {
     this.setState({
       todoList,
     });
+    this.setData(this.state.todoList);
   };
   
   render(){
-    this.setData(this.state.todoList);
-    this.saveMain(this.state.mainColor);
-    this.saveback(this.state.backColor);
     return (
       <View style={{ backgroundColor:this.state.backColor,justifyContent:'space-between',flex:1,}}>
         <Wrapper>
